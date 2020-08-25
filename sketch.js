@@ -25,20 +25,15 @@ function setup() {
  line3=createSprite(200,300,400,3);
  line4=createSprite(200,390,400,3);
  
- if(keyDown("space")){
-   car.velocityX=speed;
-   car2.velocityX=speed;
-   car3.velocityX=speeed;
-   car4.velocityX=speed;
- }
- speed=random(80,60);
- car.velocityX=8;
+ 
+ speed=random(55,90);
+ car.velocityX=speed;
  car2.velocityX=speed;
  car3.velocityX=speed;
  car4.velocityX=speed;
  weight=random(20,50);
 
-
+console.log(car.velocityX);
  
 
 
@@ -51,25 +46,27 @@ function draw() {
   background(0);
   
 
-      if(car.x-wall.x<(wall.width/2+car.width/2)){
-    car.velocityX=0;
-      }
+      if(wall.x-car.x<(wall.width/2+car.width/2)){ 
+          car.velocityX=0;
+
+          var deformation=0.5*speed*weight*speed/22509;
+            
+          if(deformation>180){
+            car.shapeColor="red";
+          }
+          if(deformation<180 && deformation>100 ){
+            car.shapeColor="yellow";
+          }
+          if(deformation<80){
+            car.shapeColor="green";
+          }
+        }
       else{
         car.velocityX=speed;
       }
-    var deformation=0.5*speed*weight*speed/22509;
-      
-    if(deformation>180){
-      wall.shapeColor="red";
-    }
-    if(deformation<180 && deformation>100 ){
-      wall.shapeColor="yellow";
-    }
-    if(deformation<80){
-      wall.shapeColor="green";
-    }
 
-    if(car2.x-wall2.x<(wall2.width/2+car2.width/2)){
+
+    /*if(car2.x-wall2.x<(wall2.width/2+car2.width/2)){
       car2.velocityX=0;
     }
     else{
@@ -121,16 +118,9 @@ function draw() {
           if(deformation<80){
             wall4.shapeColor="green";
           
-      }
+      }*/
     
-      if(keyDown("space")){
-        car.velocityX=speed;
-        car2.velocityX=speed;
-        car3.velocityX=speed;
-        car4.velocityX=speed;
-      }
-    
-  
+      
 
 drawSprites();
 }
